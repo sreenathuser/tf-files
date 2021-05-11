@@ -29,7 +29,7 @@ resource "azurerm_resource_group" "RG-for-logicapp" {
 resource "azurerm_template_deployment" "my_logic_app" {
     name = "DSGlogicapp"
     resource_group_name = azurerm_resource_group.RG-for-logicapp.name
-    template_body = file("mylogicapp.json")
-    parameters_body = file("mylogicapp_extracted_params.json")
+    template_body = file("template.json")
+    parameters_body = file("parameters.json")
     deployment_mode = "Incremental"
 }
