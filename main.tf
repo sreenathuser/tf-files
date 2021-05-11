@@ -12,7 +12,7 @@ terraform {
 provider "azurerm" {
     # The "feature" block is required for AzureRM provider 2.x. 
     # If you're using version 1.x, the "features" block is not allowed.
-    version = "~>2.0"
+    version = "~>2.53.0"
     features {}
 }
 
@@ -26,10 +26,10 @@ resource "azurerm_resource_group" "RG-for-logicapp" {
     }
 }
 
-resource "azurerm_template_deployment" "my_logic_app" {
+resource "azurerm_resource_group_template_deployment" "my_logic_app" {
     name = "DSGlogicapp"
     resource_group_name = azurerm_resource_group.RG-for-logicapp.name
-    template_body = file("/home/runner/work/demo_logic_app/demo_logic_app/tf-files/template.json")
-    parameters_body = file("/home/runner/work/demo_logic_app/demo_logic_app/tf-files/parameters.json")
-    deployment_mode = "Incremental"
+    template_content = templatefile("/home/runner/work/demo_logic_app/demo_logic_app/tf-files/template.json", {})
+    parameters_content = templatefile("/home/runner/work/demo_logic_app/demo_logic_app/tf-files/parameters.json", {})
+    deployment_mode = "Incremental" 
 }
