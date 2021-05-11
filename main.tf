@@ -29,7 +29,7 @@ resource "azurerm_resource_group" "RG-for-logicapp" {
 resource "azurerm_resource_group_template_deployment" "my_logic_app" {
     name = "DSGlogicapp"
     resource_group_name = azurerm_resource_group.RG-for-logicapp.name
-    template_content = templatefile("/home/runner/work/demo_logic_app/demo_logic_app/tf-files/template.json", {})
-    parameters_content = templatefile("/home/runner/work/demo_logic_app/demo_logic_app/tf-files/parameters.json", {})
+    template_content = templatefile("/home/runner/work/demo_logic_app/demo_logic_app/template.json", {})
+    parameters_content = templatefile("/home/runner/work/demo_logic_app/demo_logic_app/parameters.json", {})
     deployment_mode = "Incremental" 
 }
